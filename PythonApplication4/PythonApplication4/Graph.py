@@ -10,29 +10,29 @@ class Graph:
         self.numVertices = 0
   
         
-    def addVertex(self,key):
+    def addVertex(self,id):
 
-        if key not in self.vertices:
+        if id not in self.vertices:
             self.numVertices = self.numVertices + 1
-            newVertex = Vertex(key)
-            self.vertices[key] = newVertex
+            newVertex = Vertex(id)
+            self.vertices[id] = newVertex
             return newVertex
         else:
-            return self.vertices[key]
+            return self.vertices[id]
 
-    def getVertex(self,n):
-        if n in self.vertices:
-            return self.vertices[n]
+    def getVertex(self,id):
+        if id in self.vertices:
+            return self.vertices[id]
         else:
             return None
 
     
-    def addEdge(self,f,t,cost=0):
-            if f not in self.vertices:
-                nv = self.addVertex(f)
-            if t not in self.vertices:
-                nv = self.addVertex(t)
-            self.vertices[f].addNeighbor(self.vertices[t],cost)
+    def addEdge(self,vertice1,vertice2,cost=0):
+            if vertice1 not in self.vertices:
+                nv = self.addVertex(vertice1)
+            if vertice2 not in self.vertices:
+                nv = self.addVertex(vertice2)
+            self.vertices[vertice1].addNeighbor(self.vertices[vertice2],cost)
     
     def getVertices(self):
         return list(self.vertices.keys())
@@ -44,24 +44,23 @@ class Vertex:
         self.id = num
         self.connectedTo = {}
         self.color = 'white'
-        self.pred = None
+        self.parent = None
      
-    # def __lt__(self,o):
-    #     return self.id < o.id
+  
     
-    def addNeighbor(self,nbr,weight=0):
-        self.connectedTo[nbr] = weight
+    def addNeighbor(self,nbr,cost=0):
+        self.connectedTo[nbr] = cost
         
     def setColor(self,color):
         self.color = color
         
    
-    def setPred(self,p):
-        self.pred = p
+    def setParent(self,p):
+        self.parent = p
 
   
-    def getPred(self):
-        return self.pred
+    def getParent(self):
+        return self.parent
         
    
         
@@ -72,7 +71,6 @@ class Vertex:
         return self.connectedTo.keys()
         
  
-                
     def __str__(self):
         return str(self.id) + ":color " + self.color +"]\n"
     
