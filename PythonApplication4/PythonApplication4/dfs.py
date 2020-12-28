@@ -26,8 +26,6 @@ def draw_graph(graph, node_size):
     for k,e in graph.items():
         x = [k]*len(e)
         edges.extend(zip(x, e))
-
-
     vertices = set([n1 for n1, n2 in edges] + [n2 for n1, n2 in edges])
     node_colors_hash = {x:"white" for x in vertices}
     
@@ -44,15 +42,7 @@ def draw_graph(graph, node_size):
     for edge in edges:
         G.add_edge(edge[0], edge[1], arrows=True)
     
-    # set edge colors
-    unique_edges = []
-    print (edges)
-    for (x, y) in edges:
-        if ((y, x) or (y,x)) not in unique_edges:
-            unique_edges.append((x,y))
-
-    edge_colors = ["red" for x in unique_edges]
-
+    
     # draw graph
     pos = nx.shell_layout(G)
     nx.draw(G, pos, with_labels=True,node_size = 600, node_color=node_colors)
@@ -123,22 +113,11 @@ def change_node_color(c, node):
     pause(2)
             
 
-def get_edges(g):
-    for u in g.getVertices():
-        print ("For %s" % u)
-        for v in g.getVertex(u).getConnections():
-            print ("\t%s" % v)              
+         
 
 ############################# Start the Program ##################
 # 1. Declare the graph
-# graph = {1: [5],
-#        2: [1, 6],
-#        3: [2, 6],
-#        4: [7, 8],
-#        5: [2],
-#        6: [5],
-#        7: [3, 6],
-#        8: [4, 7] }
+
 
 graph = {1: [2, 8],
         2: [1, 8, 3],
