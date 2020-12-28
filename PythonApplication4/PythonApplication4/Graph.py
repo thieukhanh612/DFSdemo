@@ -1,17 +1,10 @@
 
-
-import sys
-import os
-import unittest
-
 class Graph:
     def __init__(self):
         self.vertices = {}
         self.numVertices = 0
-  
-        
-    def addVertex(self,id):
 
+    def addVertex(self,id):
         if id not in self.vertices:
             self.numVertices = self.numVertices + 1
             newVertex = Vertex(id)
@@ -26,7 +19,6 @@ class Graph:
         else:
             return None
 
-    
     def addEdge(self,vertice1,vertice2,cost=0):
             if vertice1 not in self.vertices:
                 nv = self.addVertex(vertice1)
@@ -38,7 +30,6 @@ class Graph:
         return list(self.vertices.keys())
         
   
-                
 class Vertex:
     def __init__(self,num):
         self.id = num
@@ -46,31 +37,24 @@ class Vertex:
         self.color = 'white'
         self.parent = None
      
-  
-    
     def addNeighbor(self,nbr,cost=0):
         self.connectedTo[nbr] = cost
         
     def setColor(self,color):
         self.color = color
         
-   
     def setParent(self,p):
         self.parent = p
 
-  
     def getParent(self):
         return self.parent
-        
-   
-        
+       
     def getColor(self):
         return self.color
     
     def getConnections(self):
         return self.connectedTo.keys()
-        
- 
+           
     def __str__(self):
         return str(self.id) + ":color " + self.color +"]\n"
     
